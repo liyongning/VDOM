@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    .bg {
+      background-color: black;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+  <div id = "app"></div>
+  <!-- <script>
+    // 打印原生DOM的属性
+    const div = document.createElement('div')
+    const keys = []
+    for (let key in div) {
+      keys.push(key)
+    }
+    console.log(keys)
+  </script> -->
+  <script src = "./vdom.js"></script>
+  <script>
+    const div = createElement('div', { key: 'test', id: 'test' }, [
+      createElement('p', { key: 'a', style: { color: 'red' }}, 'p1'),
+      createElement('p', { key: 'b', style: { 'font-size': '30px', color: 'green' }}, 'p2'),
+      createElement('p', { key: 'c', 'class': 'bg', '@click': () => {alert('click')} }, 'p3'),
+    ])
+    render(div, document.getElementById('app'))
+    // console.log(JSON.stringify(div, null, 2))
+    const div1 = createElement('div', { key: 'test', id: 'test' }, [
+      createElement('p', { key: 'b', style: { 'font-size': '30px', color: 'green' }}, 'p2'),
+      createElement('p', { key: 'a', style: { color: 'red' }}, 'p1'),
+      createElement('p', { key: 'd', style: { color: 'blue' }}, 'p4'),
+      createElement('p', { key: 'f', 'class': 'bg', '@click': () => {alert('click')} }, 'pf'),
+      createElement('p', { key: 'e', style: { color: 'green', 'font-size': '30px'}}, 'p5'),
+    ])
+    setTimeout(() =>  {
+      render(div1, document.getElementById('app'))
+    }, 1000)
+  </script>
+</body>
+</html>
